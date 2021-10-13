@@ -2,20 +2,24 @@ import axios from 'axios'
 import $ from 'jquery'
 
 export default {
-    name: 'Roles',
+    name: 'Agenda',
     mounted() {
         this.getAll()
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/roles/listar')
+            axios.get('http://localhost:8080/api/cursos/listar')
             .then(response => {
-                $('#dataTable-Roles').DataTable( {                    
+                $('#dataTable-Agenda').DataTable( {                    
                     data: response.data,
                     columns: [
-                        { data: 'id' },
-                        { data: 'nombre' },
-                        { data: 'descripcion' },
+                        { data: 'curso_id' },
+                        { data: 'fecha_inicrea' },
+                        { data: 'fecha_fincrea' },
+                        { data: 'fecha_iniact' },
+                        { data: 'fecha_finACT' },
+                        { data: 'area_id' },
+                        { data: 'estado' },
                         {
                             data: 'id',
                             render: function(data) {
