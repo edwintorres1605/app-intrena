@@ -19,7 +19,12 @@ export default {
                         {
                             data: 'id',
                             render: function(data) {
-                                return `<a href="" data-id="${data}" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm float-left pr-1"><i class="fas fa-edit"></i></a><a href="" data-id="${data}" class="d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-2"><i class="fas fa-trash-alt"></i></a>`
+                                return `<a href="" data-id="${data}" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm float-left pr-1">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="" data-id="${data}" class="d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-2">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>`
                             }
                         }
                     ]

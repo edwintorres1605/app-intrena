@@ -1,24 +1,27 @@
 import axios from 'axios'
 import $ from 'jquery'
+import ModalAgenda from './modalAgenda/ModalAgenda.vue'
 
 export default {
     name: 'Agenda',
+    components: { ModalAgenda },
     mounted() {
         this.getAll()
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/cursos/listar')
+            axios.get('http://localhost:8080/api/agenda/listar')
             .then(response => {
                 $('#dataTable-Agenda').DataTable( {                    
                     data: response.data,
                     columns: [
-                        { data: 'curso_id' },
-                        { data: 'fecha_inicrea' },
-                        { data: 'fecha_fincrea' },
-                        { data: 'fecha_iniact' },
-                        { data: 'fecha_finACT' },
-                        { data: 'area_id' },
+                        { data: 'id' },
+                        { data: 'curso.nombre' },
+                        { data: 'fechaInicrea' },
+                        { data: 'fechaFincrea' },
+                        { data: 'fechaIniact' },
+                        { data: 'fechaFinact' },
+                        { data: 'area.nombre' },
                         { data: 'estado' },
                         {
                             data: 'id',
