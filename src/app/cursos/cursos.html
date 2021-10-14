@@ -3,11 +3,11 @@
         <h1 class="h4 mb-2 text-gray-900">
             Cursos          
         </h1> 
-        <a href="#" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm" 
-            data-toggle="modal" data-target="#newModal">
+        <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm" 
+            data-toggle="modal" data-target="#modal-agenda" @click="addClick()" id="show-modal">
             <i class="fas fa-plus fa-sm text-white-50 mr-2"></i>
             Nuevo curso
-        </a> 
+        </button> 
     </div>
 
     <!-- DataTales Example -->
@@ -23,8 +23,50 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <tr v-for="curso in cursos">
+                            <td>{{curso.id}}</td>
+                            <td>{{curso.nombre}}</td>
+                            <td>{{curso.descripcion}}</td>
+                            <td>
+                                <button type="button" class="d-sm-inline-block btn btn-sm btn-warning my-btn-red shadow-sm" 
+                                    data-toggle="modal" data-target="#modal-agenda" @click="editClick(curso)" id="show-modal">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm ml-2" 
+                                    @click="deleteClick(curso.id)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
+                <!-- Agenda Modal-->
+                <Modal v-if="showModal" @close="showModal = false">
+                    <h5 class="modal-title" slot="header">{{modalTitle}}</h5>
+                    <form slot="body">
+                        <div class="row mb-3">
+                            <label for="Nombre" class="col-sm-5 col-form-label">
+                                Nombre
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Nombre" v-model="Nombre">
+                            </div>
+                        </div> 
+                        <div class="row mb-3">
+                            <label for="Descripcion" class="col-sm-5 col-form-label">
+                                Descripción
+                            </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" name="Descripcion" v-model="Descripcion"></textarea>
+                            </div>
+                        </div>                        
+                    </form>
+                    <div slot="footer">                            
+                        <button type="button" @click="createClick()" v-if="id==0" class="btn btn-danger my-btn-red shadow-sm">Guardar</button>
+                        <button type="button" @click="updateClick()" v-if="id!=0" class="btn btn-danger my-btn-red shadow-sm">Actualizar</button>
+                    </div>
+                </Modal>
             </div>
         </div>
     </div>

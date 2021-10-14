@@ -9,11 +9,11 @@
         <h1 class="h4 mb-2 text-gray-900">
             Agenda          
         </h1> 
-        <a href="" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm" 
-            data-toggle="modal" data-target="#modal-agenda">
+        <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm" 
+            data-toggle="modal" data-target="#modal-agenda" @click="addActivity()" id="show-modal">
             <i class="fas fa-plus fa-sm text-white-50 mr-2"></i>
             Nueva actividad
-        </a>         
+        </button>        
     </div>        
 
     <!-- DataTales Example -->
@@ -36,6 +36,81 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+
+                <!-- Agenda Modal-->
+                <Modal v-if="showModal" @close="showModal = false">
+                    <h5 class="modal-title" slot="header">{{modalTitle}}</h5>
+                    <form slot="body">
+                        <div class="row mb-3">
+                            <label for="Curso" class="col-sm-5 col-form-label-sm">Curso:</label>
+                            <div class="col-sm-7">
+                                <select id="Curso" class="form-control" v-model="Curso">
+                                    <option selected>Seleccione un curso</option>
+                                    <option>Inducción</option>
+                                    <option>Comunicación asertiva</option>
+                                    <option>Servicio al cliente</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="FechaIniCre" class="col-sm-5 col-form-label-sm" v-model="FechaIniCre">
+                                Fecha inicial de creación:
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="FechaIniCre">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="FechaFinCre" class="col-sm-5 col-form-label-sm" v-model="FechaFinCre">
+                                Fecha final de creación:
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="FechaFinCre">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="FechaIniAct" class="col-sm-5 col-form-label-sm" v-model="FechaIniAct">
+                                Fecha inicial de activación:
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="FechaIniAct">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="FechaFinAct" class="col-sm-5 col-form-label-sm" v-model="FechaFinAct">
+                                Fecha final de activación:
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="FechaFinAct">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Area" class="col-sm-5 col-form-label-sm">
+                                Área:
+                            </label>
+                            <div class="col-sm-7">
+                                <select id="Area" class="form-control" v-model="Area">
+                                    <option selected>Seleccione un área</option>
+                                    <option>Comercial</option>
+                                    <option>RRHH</option>
+                                    <option>Servicio al cliente</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Estado" class="col-sm-5 col-form-label" v-model="Estado">
+                                Estado
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="Estado">
+                            </div>
+                        </div>                        
+                    </form>
+                    <div slot="footer">                            
+                        <button type="submit" v-if="id==0" class="btn btn-danger my-btn-red shadow-sm">Agendar</button>
+                        <button type="submit" v-if="id!=0" class="btn btn-danger my-btn-red shadow-sm">Actualizar</button>
+                    </div>
+                </Modal>
             </div>
         </div>
     </div>
