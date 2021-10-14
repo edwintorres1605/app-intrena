@@ -1,5 +1,5 @@
 import axios from 'axios'
-import $ from 'jquery'
+/* import $ from 'jquery' */
 import Modal from '../../components/modal/Modal.vue'
 
 export default {
@@ -10,7 +10,7 @@ export default {
     },
     data() {
         return {
-            /* actividades: [], */   
+            actividades: [],   
             id: 0,         
             modalTitle: "",
             Curso: "",
@@ -27,7 +27,8 @@ export default {
         getAll() {
             axios.get('http://localhost:8080/api/agenda/listar')
             .then(response => {
-                $('#dataTable-Agenda').DataTable( {                    
+                this.actividades = response.data
+                /* $('#dataTable-Agenda').DataTable( {                    
                     data: response.data,
                     columns: [
                         { data: 'id' },
@@ -51,38 +52,66 @@ export default {
                             }
                         }
                     ]
-                } );
+                }); */
             })
-            .catch(error => console.log(error.response))
-
-            $(document).on("click", "#eliminar", function() {
-                let id = $(this).data("id")
-                axios.delete('http://localhost:8080/api/agenda/' + id)                
-            })            
+            .catch(error => console.log(error.response))        
         },
-        addActivity() {
+        addClick() {
             this.showModal = true
             this.modalTitle = "Nueva Actividad"
             this.id = 0
             this.Curso = ""
-            this.FechaIniCre = ""
+            this.FechaIniCre = "" 
             this.FechaFinCre = ""
             this.FechaIniAct = ""
             this.FechaFinAct = ""
             this.Area = ""
-            this.Estado = ""            
+            this.Estado = ""  
         },
-        editActivity(datos) {
+        editClick(actividad) {
             this.showModal = true
             this.modalTitle = "Editar Actividad"
-            this.id = datos.id
-            this.Curso = datos.curso.nombre
-            this.FechaIniCre = datos.fechaInicrea
-            this.FechaFinCre = datos.fechaFincrea
-            this.FechaIniAct = datos.fechaIniact
-            this.FechaFinAct = datos.fechaFinact
-            this.Area = datos.area.nombre
-            this.Estado = datos.estado
+            this.id = actividad.id
+            this.Curso = actividad.curso.nombre
+            this.FechaIniCre = actividad.fechaInicrea
+            this.FechaFinCre = actividad.fechaFincrea
+            this.FechaIniAct = actividad.fechaIniact
+            this.FechaFinAct = actividad.fechaFinact
+            this.Area = actividad.area.nombre
+            this.Estado = actividad.estado
+        },
+        createClick() {
+            axios.post('http://localhost:8080/api/agenda', {
+                nombre: this.Nombre,
+                descripcion: this.Descripcion
+            })
+            .then((response) => {
+                this.getAll()
+                this.showModal = false
+                console.log(response)
+            })
+        },
+        updateClick() {
+            axios.put('http://localhost:8080/api/agenda/actualizar/' + this.id, {
+                id: this.id,
+                nombre: this.Nombre,
+                descripcion: this.Descripcion
+            })
+            .then((response) => {
+                this.getAll()
+                this.showModal = false
+                console.log(response)
+            })
+        },
+        deleteClick(id) {
+            if (!confirm("¿Confirma que desea eliminar el registro?")) {
+                return 
+            }
+            axios.delete('http://localhost:8080/api/agenda/' + id)
+            .then((response) => {
+                this.getAll()
+                console.log(response)
+            })
         }
     }
 }

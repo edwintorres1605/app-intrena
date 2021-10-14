@@ -10,10 +10,10 @@
             Agenda          
         </h1> 
         <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm" 
-            data-toggle="modal" data-target="#modal-agenda" @click="addActivity()" id="show-modal">
+            data-toggle="modal" data-target="#modal-agenda" @click="addClick()" id="show-modal">
             <i class="fas fa-plus fa-sm text-white-50 mr-2"></i>
-            Nueva actividad
-        </button>        
+            Nueva Actividad
+        </button>       
     </div>        
 
     <!-- DataTales Example -->
@@ -34,9 +34,29 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <tr v-for="actividad in actividades">
+                            <td>{{actividad.id}}</td>
+                            <td>{{actividad.curso.nombre}}</td>
+                            <td>{{actividad.fechaInicrea}}</td>
+                            <td>{{actividad.fechaFincrea}}</td>
+                            <td>{{actividad.fechaIniact}}</td>
+                            <td>{{actividad.fechaFinact}}</td>
+                            <td>{{actividad.area.nombre}}</td>
+                            <td>{{actividad.estado}}</td>
+                            <td>
+                                <button type="button" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm" 
+                                    data-toggle="modal" data-target="#modal-agenda" @click="editClick(actividad)" id="show-modal">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm ml-2" 
+                                    @click="deleteClick(actividad.id)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-
                 <!-- Agenda Modal-->
                 <Modal v-if="showModal" @close="showModal = false">
                     <h5 class="modal-title" slot="header">{{modalTitle}}</h5>
@@ -53,35 +73,35 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="FechaIniCre" class="col-sm-5 col-form-label-sm" v-model="FechaIniCre">
+                            <label for="FechaIniCre" class="col-sm-5 col-form-label-sm">
                                 Fecha inicial de creación:
                             </label>
                             <div class="col-sm-7">
-                                <input type="date" class="form-control" id="FechaIniCre">
+                                <input type="date" class="form-control" name="FechaIniCre" v-model="FechaIniCre">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="FechaFinCre" class="col-sm-5 col-form-label-sm" v-model="FechaFinCre">
+                            <label for="FechaFinCre" class="col-sm-5 col-form-label-sm">
                                 Fecha final de creación:
                             </label>
                             <div class="col-sm-7">
-                                <input type="date" class="form-control" id="FechaFinCre">
+                                <input type="date" class="form-control" name="FechaFinCre" v-model="FechaFinCre">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="FechaIniAct" class="col-sm-5 col-form-label-sm" v-model="FechaIniAct">
+                            <label for="FechaIniAct" class="col-sm-5 col-form-label-sm">
                                 Fecha inicial de activación:
                             </label>
                             <div class="col-sm-7">
-                                <input type="date" class="form-control" id="FechaIniAct">
+                                <input type="date" class="form-control" name="FechaIniAct" v-model="FechaIniAct">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="FechaFinAct" class="col-sm-5 col-form-label-sm" v-model="FechaFinAct">
+                            <label for="FechaFinAct" class="col-sm-5 col-form-label-sm">
                                 Fecha final de activación:
                             </label>
                             <div class="col-sm-7">
-                                <input type="date" class="form-control" id="FechaFinAct">
+                                <input type="date" class="form-control" name="FechaFinAct" v-model="FechaFinAct">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -98,11 +118,11 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Estado" class="col-sm-5 col-form-label" v-model="Estado">
+                            <label for="Estado" class="col-sm-5 col-form-label">
                                 Estado
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="Estado">
+                                <input type="text" class="form-control" name="Estado" v-model="Estado">
                             </div>
                         </div>                        
                     </form>
