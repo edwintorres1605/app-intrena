@@ -11,7 +11,9 @@ export default {
         return {
             cursos: [],
             areas: [],
-            actividades: [],   
+            actividades: [], 
+            CursoID: "",
+            AreaID: "",  
             id: 0,         
             modalTitle: "",
             Curso: "",
@@ -47,6 +49,7 @@ export default {
         addClick() {
             this.showModal = true
             this.modalTitle = "Nueva Actividad"
+            this.CursoID = ""
             this.id = 0
             this.Curso = ""
             this.FechaIniCre = "" 
@@ -59,6 +62,8 @@ export default {
         editClick(actividad) {
             this.showModal = true
             this.modalTitle = "Editar Actividad"
+            this.CursoID = actividad.curso.id
+            this.AreaID = actividad.area.id
             this.id = actividad.id
             this.Curso = actividad.curso.nombre
             this.FechaIniCre = actividad.fechaInicrea
@@ -70,8 +75,13 @@ export default {
         },
         createClick() {
             axios.post('http://localhost:8080/api/agenda', {
-                nombre: this.Nombre,
-                descripcion: this.Descripcion
+                curso: {id: this.CursoID},
+                fechaInicrea: this.FechaIniCre,
+                fechaFincrea: this.FechaFinCre,
+                fechaIniact: this.FechaIniAct,
+                fechaFinact: this.FechaFinAct,
+                area: {id: this.AreaID},
+                estado: this.Estado
             })
             .then((response) => {
                 this.getAll()
@@ -82,8 +92,13 @@ export default {
         updateClick() {
             axios.put('http://localhost:8080/api/agenda/actualizar/' + this.id, {
                 id: this.id,
-                nombre: this.Nombre,
-                descripcion: this.Descripcion
+                curso: {id: this.CursoID},
+                fechaInicrea: this.FechaIniCre,
+                fechaFincrea: this.FechaFinCre,
+                fechaIniact: this.FechaIniAct,
+                fechaFinact: this.FechaFinAct,
+                area: {id: this.AreaID},
+                estado: this.Estado
             })
             .then((response) => {
                 this.getAll()

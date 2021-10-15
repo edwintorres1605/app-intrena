@@ -8,7 +8,7 @@ export default {
         this.getAll()
     },
     data() {
-        return {            
+        return {
             usuarios: [],   
             id: 0,         
             modalTitle: "",
@@ -28,15 +28,15 @@ export default {
         },
         addClick() {
             this.showModal = true
-            this.modalTitle = "Nuevo Usuario"
+            this.modalTitle = "Nuevo Curso"
             this.id = 0
             this.Nombre = ""
-            this.Email = ""  
-            this.Password = ""
+            this.Email = ""   
+            this.Password = ""        
         },
         editClick(usuario) {
             this.showModal = true
-            this.modalTitle = "Editar Usuario"
+            this.modalTitle = "Editar Curso"
             this.id = usuario.id
             this.Nombre = usuario.nombre
             this.Email = usuario.email
@@ -55,7 +55,7 @@ export default {
             })
         },
         updateClick() {
-            axios.put('http://localhost:8080/api/cursos/usuarios/' + this.id, {
+            axios.put('http://localhost:8080/api/usuarios/actualizar/' + this.id, {
                 id: this.id,
                 nombre: this.Nombre,
                 email: this.Email,

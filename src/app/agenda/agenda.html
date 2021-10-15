@@ -67,9 +67,9 @@
                         <div class="row mb-3">
                             <label for="Curso" class="col-sm-5 col-form-label-sm">Curso:</label>
                             <div class="col-sm-7">
-                                <select id="Curso" class="form-control" v-model="Curso">
-                                    <option selected>Seleccione un curso</option>
-                                    <option v-for="curso in cursos">
+                                <select id="Curso" class="form-control" v-model="CursoID">
+                                    <option selected value="">Seleccione un curso</option>
+                                    <option v-bind:value="curso.id" v-for="curso in cursos">
                                         {{ curso.nombre }}
                                     </option>                                    
                                 </select>
@@ -112,9 +112,9 @@
                                 Área:
                             </label>
                             <div class="col-sm-7">
-                                <select id="Area" class="form-control" v-model="Area">
+                                <select id="Area" class="form-control" v-model="AreaID">
                                     <option selected>Seleccione un área</option>
-                                    <option v-for="area in areas">
+                                    <option v-bind:value="area.id" v-for="area in areas">
                                         {{ area.nombre }}
                                     </option> 
                                 </select>
@@ -130,8 +130,8 @@
                         </div>                        
                     </form>
                     <div slot="footer">                            
-                        <button type="submit" v-if="id==0" class="btn btn-danger my-btn-red shadow-sm">Agendar</button>
-                        <button type="submit" v-if="id!=0" class="btn btn-danger my-btn-red shadow-sm">Actualizar</button>
+                        <button type="submit" @click="createClick()" v-if="id==0" class="btn btn-danger my-btn-red shadow-sm">Agendar</button>
+                        <button type="submit" @click="updateClick()" v-if="id!=0" class="btn btn-danger my-btn-red shadow-sm">Actualizar</button>
                     </div>
                 </Modal>
             </div>

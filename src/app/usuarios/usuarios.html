@@ -7,19 +7,20 @@
             data-toggle="modal" data-target="#modal-agenda" @click="addClick()" id="show-modal">
             <i class="fas fa-plus fa-sm text-white-50 mr-2"></i>
             Nuevo usuario
-        </button>
+        </button> 
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive my-text-14">
-                <table class="table table-bordered" id="dataTable-Usuarios" width="100%" cellspacing="0">                    
+                <table class="table table-bordered" id="dataTable-Cursos" width="100%" cellspacing="0">                    
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Email</th>
+                            <th>Password</th>
                             <th class="text-center">Editar</th>
                             <th class="text-center">Eliminar</th>
                         </tr>
@@ -29,6 +30,7 @@
                             <td>{{usuario.id}}</td>
                             <td>{{usuario.nombre}}</td>
                             <td>{{usuario.email}}</td>
+                            <td>{{usuario.password}}</td>
                             <td class="text-center">
                                 <button type="button" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm" 
                                     data-toggle="modal" data-target="#modal-agenda" @click="editClick(usuario)" id="show-modal">
@@ -63,7 +65,7 @@
                             <div class="col-sm-7">
                                 <input type="email" class="form-control" name="Email" v-model="Email">
                             </div>
-                        </div> 
+                        </div>       
                         <div class="row mb-3">
                             <label for="Password" class="col-sm-5 col-form-label">
                                 Password
@@ -71,7 +73,7 @@
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" name="Password" v-model="Password">
                             </div>
-                        </div>                        
+                        </div>                    
                     </form>
                     <div slot="footer">                            
                         <button type="button" @click="createClick()" v-if="id==0" class="btn btn-danger my-btn-red shadow-sm">Guardar</button>
