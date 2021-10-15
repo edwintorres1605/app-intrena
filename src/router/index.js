@@ -30,6 +30,12 @@ const routes = [
         path: '/permisos',
         name: 'Permisos',
         component: () => import('../app/permisos/Permisos.vue')
+    },
+
+    {
+        path: '/areas',
+        name: 'Áreas',
+        component: () => import('../app/areas/Areas.vue')
     }
 
 ]

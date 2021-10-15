@@ -1,5 +1,4 @@
 import axios from 'axios'
-/* import $ from 'jquery' */
 import Modal from '../../components/modal/Modal.vue'
 
 export default {
@@ -10,6 +9,8 @@ export default {
     },
     data() {
         return {
+            cursos: [],
+            areas: [],
             actividades: [],   
             id: 0,         
             modalTitle: "",
@@ -28,33 +29,20 @@ export default {
             axios.get('http://localhost:8080/api/agenda/listar')
             .then(response => {
                 this.actividades = response.data
-                /* $('#dataTable-Agenda').DataTable( {                    
-                    data: response.data,
-                    columns: [
-                        { data: 'id' },
-                        { data: 'curso.nombre' },
-                        { data: 'fechaInicrea' },
-                        { data: 'fechaFincrea' },
-                        { data: 'fechaIniact' },
-                        { data: 'fechaFinact' },
-                        { data: 'area.nombre' },
-                        { data: 'estado' },
-                        {
-                            data: 'id',
-                            render: function(data) {
-                                return `<button type="button" class="d-sm-inline-block btn btn-sm btn-warning my-btn-red shadow-sm" 
-                                            data-toggle="modal" data-target="#modal-agenda" @click="editActivity(${data})" id="show-modal">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button data-id="${data}" id="eliminar" class="d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-2">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>`
-                            }
-                        }
-                    ]
-                }); */
             })
-            .catch(error => console.log(error.response))        
+            .catch(error => console.log(error.response))  
+
+            axios.get('http://localhost:8080/api/cursos/listar')
+            .then(response => {
+                this.cursos = response.data
+            })
+            .catch(error => console.log(error.response)) 
+            
+            axios.get('http://localhost:8080/api/areas/listar')
+            .then(response => {
+                this.areas = response.data
+            })
+            .catch(error => console.log(error.response)) 
         },
         addClick() {
             this.showModal = true

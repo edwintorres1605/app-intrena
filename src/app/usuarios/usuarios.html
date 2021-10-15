@@ -20,7 +20,8 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>Acciones</th>
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,11 +29,13 @@
                             <td>{{usuario.id}}</td>
                             <td>{{usuario.nombre}}</td>
                             <td>{{usuario.email}}</td>
-                            <td>
+                            <td class="text-center">
                                 <button type="button" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm" 
                                     data-toggle="modal" data-target="#modal-agenda" @click="editClick(usuario)" id="show-modal">
                                     <i class="fas fa-edit"></i>
                                 </button>
+                            </td>
+                            <td class="text-center">
                                 <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm ml-2" 
                                     @click="deleteClick(usuario.id)">
                                     <i class="fas fa-trash-alt"></i>

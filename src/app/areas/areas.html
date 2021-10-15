@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h4 mb-2 text-gray-900">
-            Permisos          
+            Área          
         </h1> 
         <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm" 
             data-toggle="modal" data-target="#modal-agenda" @click="addClick()" id="show-modal">
             <i class="fas fa-plus fa-sm text-white-50 mr-2"></i>
-            Nuevo permiso
+            Nueva área
         </button>
     </div>
 
@@ -19,25 +19,23 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Descripción</th>
                             <th class="text-center">Editar</th>
                             <th class="text-center">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="permiso in permisos">
-                            <td>{{permiso.id}}</td>
-                            <td>{{permiso.nombre}}</td>
-                            <td>{{permiso.descripcion}}</td>
+                        <tr v-for="area in areas">
+                            <td>{{area.id}}</td>
+                            <td>{{area.nombre}}</td>
                             <td class="text-center">
                                 <button type="button" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm" 
-                                    data-toggle="modal" data-target="#modal-agenda" @click="editClick(permiso)" id="show-modal">
+                                    data-toggle="modal" data-target="#modal-agenda" @click="editClick(area)" id="show-modal">
                                     <i class="fas fa-edit"></i>
                                 </button>
                             </td>
                             <td class="text-center">
                                 <button type="button" class="d-sm-inline-block btn btn-sm btn-danger my-btn-red shadow-sm ml-2" 
-                                    @click="deleteClick(permiso.id)">
+                                    @click="deleteClick(area.id)">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -54,14 +52,6 @@
                             </label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="Nombre" v-model="Nombre">
-                            </div>
-                        </div> 
-                        <div class="row mb-3">
-                            <label for="Descripcion" class="col-sm-5 col-form-label">
-                                Descripción
-                            </label>
-                            <div class="col-sm-7">
-                                <textarea class="form-control" name="Descripcion" v-model="Descripcion"></textarea>
                             </div>
                         </div>                        
                     </form>
