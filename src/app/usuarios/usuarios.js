@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/usuarios/listar')
+            axios.get('http://132.145.32.121:8080/api/usuarios/listar')
             .then(response => {
                 this.usuarios = response.data
             })
@@ -43,7 +43,7 @@ export default {
             this.Password = usuario.password
         },
         createClick() {
-            axios.post('http://localhost:8080/api/usuarios', {
+            axios.post('http://132.145.32.121:8080/api/usuarios', {
                 nombre: this.Nombre,
                 email: this.Email,
                 password: this.Password
@@ -55,7 +55,7 @@ export default {
             })
         },
         updateClick() {
-            axios.put('http://localhost:8080/api/usuarios/actualizar/' + this.id, {
+            axios.put('http://132.145.32.121:8080/api/usuarios/actualizar/' + this.id, {
                 id: this.id,
                 nombre: this.Nombre,
                 email: this.Email,
@@ -71,7 +71,7 @@ export default {
             if (!confirm("¿Confirma que desea eliminar el registro?")) {
                 return 
             }
-            axios.delete('http://localhost:8080/api/usuarios/' + id)
+            axios.delete('http://132.145.32.121:8080/api/usuarios/' + id)
             .then((response) => {
                 this.getAll()
                 console.log(response)

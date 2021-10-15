@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/roles/listar')
+            axios.get('http://132.145.32.121:8080/api/roles/listar')
             .then(response => {
                 this.roles = response.data
             })
@@ -40,7 +40,7 @@ export default {
             this.Descripcion = rol.descripcion
         },
         createClick() {
-            axios.post('http://localhost:8080/api/roles', {
+            axios.post('http://132.145.32.121:8080/api/roles', {
                 nombre: this.Nombre,
                 descripcion: this.Descripcion
             })
@@ -51,7 +51,7 @@ export default {
             })
         },
         updateClick() {
-            axios.put('http://localhost:8080/api/roles/actualizar/' + this.id, {
+            axios.put('http://132.145.32.121:8080/api/roles/actualizar/' + this.id, {
                 id: this.id,
                 nombre: this.Nombre,
                 descripcion: this.Descripcion
@@ -66,7 +66,7 @@ export default {
             if (!confirm("¿Confirma que desea eliminar el registro?")) {
                 return 
             }
-            axios.delete('http://localhost:8080/api/roles/' + id)
+            axios.delete('http://132.145.32.121:8080/api/roles/' + id)
             .then((response) => {
                 this.getAll()
                 console.log(response)

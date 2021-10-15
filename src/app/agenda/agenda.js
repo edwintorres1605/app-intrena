@@ -28,19 +28,19 @@ export default {
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/agenda/listar')
+            axios.get('http://132.145.32.121:8080/api/agenda/listar')
             .then(response => {
                 this.actividades = response.data
             })
             .catch(error => console.log(error.response))  
 
-            axios.get('http://localhost:8080/api/cursos/listar')
+            axios.get('http://132.145.32.121:8080/api/cursos/listar')
             .then(response => {
                 this.cursos = response.data
             })
             .catch(error => console.log(error.response)) 
             
-            axios.get('http://localhost:8080/api/areas/listar')
+            axios.get('http://132.145.32.121:8080/api/areas/listar')
             .then(response => {
                 this.areas = response.data
             })
@@ -74,7 +74,7 @@ export default {
             this.Estado = actividad.estado
         },
         createClick() {
-            axios.post('http://localhost:8080/api/agenda', {
+            axios.post('http://132.145.32.121:8080/api/agenda', {
                 curso: {id: this.CursoID},
                 fechaInicrea: this.FechaIniCre,
                 fechaFincrea: this.FechaFinCre,
@@ -90,7 +90,7 @@ export default {
             })
         },
         updateClick() {
-            axios.put('http://localhost:8080/api/agenda/actualizar/' + this.id, {
+            axios.put('http://132.145.32.121:8080/api/agenda/actualizar/' + this.id, {
                 id: this.id,
                 curso: {id: this.CursoID},
                 fechaInicrea: this.FechaIniCre,
@@ -110,7 +110,7 @@ export default {
             if (!confirm("¿Confirma que desea eliminar el registro?")) {
                 return 
             }
-            axios.delete('http://localhost:8080/api/agenda/' + id)
+            axios.delete('http://132.145.32.121:8080/api/agenda/' + id)
             .then((response) => {
                 this.getAll()
                 console.log(response)

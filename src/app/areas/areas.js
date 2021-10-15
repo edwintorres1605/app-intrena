@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/areas/listar')
+            axios.get('http://132.145.32.121:8080/api/areas/listar')
             .then(response => {
                 this.areas = response.data
             })
@@ -37,7 +37,7 @@ export default {
             this.Nombre = permiso.nombre
         },
         createClick() {
-            axios.post('http://localhost:8080/api/areas', {
+            axios.post('http://132.145.32.121:8080/api/areas', {
                 nombre: this.Nombre
             })
             .then((response) => {
@@ -47,7 +47,7 @@ export default {
             })
         },
         updateClick() {
-            axios.put('http://localhost:8080/api/areas/actualizar/' + this.id, {
+            axios.put('http://132.145.32.121:8080/api/areas/actualizar/' + this.id, {
                 id: this.id,
                 nombre: this.Nombre
             })
@@ -61,7 +61,7 @@ export default {
             if (!confirm("¿Confirma que desea eliminar el registro?")) {
                 return 
             }
-            axios.delete('http://localhost:8080/api/areas/' + id)
+            axios.delete('http://132.145.32.121:8080/api/areas/' + id)
             .then((response) => {
                 this.getAll()
                 console.log(response)

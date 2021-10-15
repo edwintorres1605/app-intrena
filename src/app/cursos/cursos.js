@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         getAll() {
-            axios.get('http://localhost:8080/api/cursos/listar')
+            axios.get('http://132.145.32.121:8080/api/cursos/listar')
             .then(response => {
                 this.cursos = response.data
             })
@@ -40,7 +40,7 @@ export default {
             this.Descripcion = curso.descripcion
         },
         createClick() {
-            axios.post('http://localhost:8080/api/cursos', {
+            axios.post('http://132.145.32.121:8080/api/cursos', {
                 nombre: this.Nombre,
                 descripcion: this.Descripcion
             })
@@ -51,7 +51,7 @@ export default {
             })
         },
         updateClick() {
-            axios.put('http://localhost:8080/api/cursos/actualizar/' + this.id, {
+            axios.put('http://132.145.32.121:8080/api/cursos/actualizar/' + this.id, {
                 id: this.id,
                 nombre: this.Nombre,
                 descripcion: this.Descripcion
@@ -66,7 +66,7 @@ export default {
             if (!confirm("¿Confirma que desea eliminar el registro?")) {
                 return 
             }
-            axios.delete('http://localhost:8080/api/cursos/' + id)
+            axios.delete('http://132.145.32.121:8080/api/cursos/' + id)
             .then((response) => {
                 this.getAll()
                 console.log(response)
